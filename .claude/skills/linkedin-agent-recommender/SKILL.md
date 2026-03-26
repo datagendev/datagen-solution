@@ -52,56 +52,81 @@ If the person fits multiple archetypes, recommend the primary one and mention th
 
 ## Step 3: Generate the recommendation
 
-Use the subfile content to fill this structure:
+Use the subfile content to fill this structure.
+
+**Output rules (apply to every archetype):**
+- Max 35 lines of rendered text. If it's longer, cut until it fits.
+- One sentence per idea. No sentence should restate something already said.
+- No filler words, no transitions ("Let's look at…", "Here's what…"), no preamble.
+- Slack message block: 4 lines + 1 question. No more.
+- Before/After table: 3 rows only. Short cell values (e.g. "Hours" not "Hours, depending on when they have time to context-switch").
+- Build section: code block only, no prose explanation of each step.
 
 ```
-## What a 24/7 agent looks like for [Name] at [Company]
+# [agent-name] for [First Name] [Last Initial].
 
-**Role read**: [1 sentence — who they are, what the repeatable operational work is]
-
----
-
-### The shift: from co-pilot to agent-as-driver
-
-[2-3 sentences grounded in their specific role — what they're manually driving today,
-what the trigger would be, and what they'd enter as a judgment call instead of a driver]
+**Role:** [1 sentence: who they are + the pain.]
 
 ---
 
-### The agent: [Agent name from subfile]
+## The shift: co-pilot → agent-as-driver
 
-**External trigger**: [From subfile]
+**Today:** [Trigger] → [Name] drives every step: [list manual steps].
 
-**What the agent does autonomously**:
-[Numbered list from subfile — fill in their company name, tools, and context]
-
-**Where [Name] enters**:
-[The specific Slack or email message they receive — make it feel real with their actual role/company]
-
-**What [Name]'s situation looks like with this running**:
-Before: [X hours / Y manual steps]
-After: [Agent handles steps 1-N, they spend Z minutes on the judgment call]
+**With the agent:** [Trigger] → agent [key actions] → [Name] gets a Slack message with work done. Enters only for judgment: *"[question]"*
 
 ---
 
-### To build this on DataGen
+## What [agent-name] does
 
-1. Add from marketplace: `/plugin marketplace add datagendev/datagen-plugin`
-2. Install the plugin: `/plugin install datagen --scope project`
-3. Restart Claude Code so it can load the plugin
-4. Authenticate: `/datagen:setup` — signs in through browser, installs the CLI, creates project context
-5. Connect tools: `/datagen:add-mcps` — [specific MCPs from subfile]
-6. `/datagen:build-agent [agent-name]` — [copy-ready description from subfile]
-7. `/datagen:deploy-agent [agent-name]` — [trigger + channel + subscribers from subfile]
+**Trigger:** [from subfile]
 
-**First event**: [Specific first thing that lands in their inbox]
+**Autonomous loop:**
+[Numbered list — use their company/tools/context. Max 6 steps.]
+
+**Where [Name] enters — a Slack message like:**
+
+> *[4 lines max: what happened, finding, context, action taken]*
+>
+> *[Judgment question]*
+
+[Name] replies in-thread → agent updates accordingly.
+
+---
+
+## Before / After
+
+| | Before | After |
+|---|---|---|
+| **Response time** | [Hours] | [Minutes] |
+| **Effort** | [X hours] | [Y min reviewing] |
+| **Bottleneck** | [Solo driver] | [Agent drives, human reviews] |
+
+**Why this works:** [1 sentence.]
+
+---
+
+## Build this on DataGen
+
+\```
+/plugin marketplace add datagendev/datagen-plugin
+/plugin install datagen --scope project
+# restart Claude Code to load plugin
+/datagen:setup
+/datagen:add-mcps   # [MCPs]
+/datagen:build-agent [agent-name]
+/datagen:deploy-agent [agent-name]
+\```
+
+**First event:** [1 sentence.]
 ```
 
 ---
 
 ## Framing notes
 
-- Always ground specifics in their actual profile: company name, tools they list, types of clients visible from experience
-- If profile is sparse, ask: "What's the most repetitive thing you do every day that happens across multiple clients or accounts?"
-- End every recommendation with the specific first thing that lands in their inbox the morning after setup
-- Lead with the mental model shift before the feature list
+- Ground in their actual profile: company, tools, client types
+- If profile is sparse, ask: "What's the most repetitive thing you do every day?"
+- End with the concrete first event
+- Lead with mental model shift, not features
+- Brevity rules are in "Output rules" above — they override archetype subfile length
