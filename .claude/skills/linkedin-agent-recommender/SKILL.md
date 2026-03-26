@@ -52,7 +52,15 @@ If the person fits multiple archetypes, recommend the primary one and mention th
 
 ## Step 3: Generate the recommendation
 
-Use the subfile content to fill this structure. **The final output must be under 35 lines of rendered text.** Every sentence must add new information — cut anything redundant. No filler, no restating what was already said.
+Use the subfile content to fill this structure.
+
+**Output rules (apply to every archetype):**
+- Max 35 lines of rendered text. If it's longer, cut until it fits.
+- One sentence per idea. No sentence should restate something already said.
+- No filler words, no transitions ("Let's look at…", "Here's what…"), no preamble.
+- Slack message block: 4 lines + 1 question. No more.
+- Before/After table: 3 rows only. Short cell values (e.g. "Hours" not "Hours, depending on when they have time to context-switch").
+- Build section: code block only, no prose explanation of each step.
 
 ```
 # [agent-name] for [First Name] [Last Initial].
@@ -121,4 +129,4 @@ Use the subfile content to fill this structure. **The final output must be under
 - If profile is sparse, ask: "What's the most repetitive thing you do every day?"
 - End with the concrete first event
 - Lead with mental model shift, not features
-- **Under 35 lines rendered. Every sentence must add new information. No filler.**
+- Brevity rules are in "Output rules" above — they override archetype subfile length
