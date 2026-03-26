@@ -52,40 +52,37 @@ If the person fits multiple archetypes, recommend the primary one and mention th
 
 ## Step 3: Generate the recommendation
 
-Use the subfile content to fill this structure. The format is designed for scannability — headers break up sections, a table replaces prose for before/after, a blockquote makes the Slack message feel real, and build instructions are a single code block.
+Use the subfile content to fill this structure. **The final output must be under 35 lines of rendered text.** Every sentence must add new information — cut anything redundant. No filler, no restating what was already said.
 
 ```
 # [agent-name] for [First Name] [Last Initial].
 
-**Role:** [1 sentence — who they are, what the repeatable operational work is. End with the pain: time cost, bottleneck, or context-switching tax.]
+**Role:** [1 sentence: who they are + the pain.]
 
 ---
 
 ## The shift: co-pilot → agent-as-driver
 
-**Today:** [Trigger] → [Name] drives every step: [2-4 concrete manual steps from subfile].
+**Today:** [Trigger] → [Name] drives every step: [list manual steps].
 
-**With the agent:** [Trigger] → agent autonomously [2-3 key autonomous actions] → [Name] gets a Slack message with the work already done. [Name] enters only for judgment: *"[One-line judgment question from subfile]"*
+**With the agent:** [Trigger] → agent [key actions] → [Name] gets a Slack message with work done. Enters only for judgment: *"[question]"*
 
 ---
 
 ## What [agent-name] does
 
-**Trigger:** [External trigger from subfile]
+**Trigger:** [from subfile]
 
 **Autonomous loop:**
-[Numbered list from subfile — fill in their company name, tools, and context]
+[Numbered list — use their company/tools/context. Max 6 steps.]
 
 **Where [Name] enters — a Slack message like:**
 
-> *[Line 1: what was detected / what happened]*
-> *[Line 2: root cause or key finding]*
-> *[Line 3: related context — past ticket, prior data, etc.]*
-> *[Line 4: action taken — PR created, draft sent, ticket filed, etc.]*
+> *[4 lines max: what happened, finding, context, action taken]*
 >
-> *[Judgment question — one line]*
+> *[Judgment question]*
 
-[Name] replies in-thread: *"[Example reply that redirects the agent]"* → Agent updates its work accordingly.
+[Name] replies in-thread → agent updates accordingly.
 
 ---
 
@@ -93,11 +90,11 @@ Use the subfile content to fill this structure. The format is designed for scann
 
 | | Before | After |
 |---|---|---|
-| **Response time** | [Hours / delayed until Name has time] | [Minutes — agent runs immediately] |
-| **[Name]'s effort** | [X hours per incident/task] | [Y minutes reviewing] |
-| **Bottleneck** | [Solo person drives everything] | [Agent drives, human reviews] |
+| **Response time** | [Hours] | [Minutes] |
+| **Effort** | [X hours] | [Y min reviewing] |
+| **Bottleneck** | [Solo driver] | [Agent drives, human reviews] |
 
-[Optional: **Why this works:** 1 sentence on key architectural reason — e.g., agent deployed from codebase with direct file access, agent uses their proprietary framework, etc.]
+**Why this works:** [1 sentence.]
 
 ---
 
@@ -108,19 +105,20 @@ Use the subfile content to fill this structure. The format is designed for scann
 /plugin install datagen --scope project
 # restart Claude Code to load plugin
 /datagen:setup
-/datagen:add-mcps   # [specific MCPs from subfile]
+/datagen:add-mcps   # [MCPs]
 /datagen:build-agent [agent-name]
 /datagen:deploy-agent [agent-name]
 \```
 
-**First event:** [Specific first thing that lands in their inbox — make it concrete and grounded in the trigger.]
+**First event:** [1 sentence.]
 ```
 
 ---
 
 ## Framing notes
 
-- Always ground specifics in their actual profile: company name, tools they list, types of clients visible from experience
-- If profile is sparse, ask: "What's the most repetitive thing you do every day that happens across multiple clients or accounts?"
-- End every recommendation with the specific first thing that lands in their inbox the morning after setup
-- Lead with the mental model shift before the feature list
+- Ground in their actual profile: company, tools, client types
+- If profile is sparse, ask: "What's the most repetitive thing you do every day?"
+- End with the concrete first event
+- Lead with mental model shift, not features
+- **Under 35 lines rendered. Every sentence must add new information. No filler.**
