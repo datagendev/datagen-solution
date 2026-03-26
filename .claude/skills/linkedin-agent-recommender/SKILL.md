@@ -52,49 +52,68 @@ If the person fits multiple archetypes, recommend the primary one and mention th
 
 ## Step 3: Generate the recommendation
 
-Use the subfile content to fill this structure:
+Use the subfile content to fill this structure. The format is designed for scannability — headers break up sections, a table replaces prose for before/after, a blockquote makes the Slack message feel real, and build instructions are a single code block.
 
 ```
-## What a 24/7 agent looks like for [Name] at [Company]
+# [agent-name] for [First Name] [Last Initial].
 
-**Role read**: [1 sentence — who they are, what the repeatable operational work is]
-
----
-
-### The shift: from co-pilot to agent-as-driver
-
-[2-3 sentences grounded in their specific role — what they're manually driving today,
-what the trigger would be, and what they'd enter as a judgment call instead of a driver]
+**Role:** [1 sentence — who they are, what the repeatable operational work is. End with the pain: time cost, bottleneck, or context-switching tax.]
 
 ---
 
-### The agent: [Agent name from subfile]
+## The shift: co-pilot → agent-as-driver
 
-**External trigger**: [From subfile]
+**Today:** [Trigger] → [Name] drives every step: [2-4 concrete manual steps from subfile].
 
-**What the agent does autonomously**:
+**With the agent:** [Trigger] → agent autonomously [2-3 key autonomous actions] → [Name] gets a Slack message with the work already done. [Name] enters only for judgment: *"[One-line judgment question from subfile]"*
+
+---
+
+## What [agent-name] does
+
+**Trigger:** [External trigger from subfile]
+
+**Autonomous loop:**
 [Numbered list from subfile — fill in their company name, tools, and context]
 
-**Where [Name] enters**:
-[The specific Slack or email message they receive — make it feel real with their actual role/company]
+**Where [Name] enters — a Slack message like:**
 
-**What [Name]'s situation looks like with this running**:
-Before: [X hours / Y manual steps]
-After: [Agent handles steps 1-N, they spend Z minutes on the judgment call]
+> *[Line 1: what was detected / what happened]*
+> *[Line 2: root cause or key finding]*
+> *[Line 3: related context — past ticket, prior data, etc.]*
+> *[Line 4: action taken — PR created, draft sent, ticket filed, etc.]*
+>
+> *[Judgment question — one line]*
+
+[Name] replies in-thread: *"[Example reply that redirects the agent]"* → Agent updates its work accordingly.
 
 ---
 
-### To build this on DataGen
+## Before / After
 
-1. Add from marketplace: `/plugin marketplace add datagendev/datagen-plugin`
-2. Install the plugin: `/plugin install datagen --scope project`
-3. Restart Claude Code so it can load the plugin
-4. Authenticate: `/datagen:setup` — signs in through browser, installs the CLI, creates project context
-5. Connect tools: `/datagen:add-mcps` — [specific MCPs from subfile]
-6. `/datagen:build-agent [agent-name]` — [copy-ready description from subfile]
-7. `/datagen:deploy-agent [agent-name]` — [trigger + channel + subscribers from subfile]
+| | Before | After |
+|---|---|---|
+| **Response time** | [Hours / delayed until Name has time] | [Minutes — agent runs immediately] |
+| **[Name]'s effort** | [X hours per incident/task] | [Y minutes reviewing] |
+| **Bottleneck** | [Solo person drives everything] | [Agent drives, human reviews] |
 
-**First event**: [Specific first thing that lands in their inbox]
+[Optional: **Why this works:** 1 sentence on key architectural reason — e.g., agent deployed from codebase with direct file access, agent uses their proprietary framework, etc.]
+
+---
+
+## Build this on DataGen
+
+\```
+/plugin marketplace add datagendev/datagen-plugin
+/plugin install datagen --scope project
+# restart Claude Code to load plugin
+/datagen:setup
+/datagen:add-mcps   # [specific MCPs from subfile]
+/datagen:build-agent [agent-name]
+/datagen:deploy-agent [agent-name]
+\```
+
+**First event:** [Specific first thing that lands in their inbox — make it concrete and grounded in the trigger.]
 ```
 
 ---
