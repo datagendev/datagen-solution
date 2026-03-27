@@ -79,8 +79,29 @@ After the POST:
 
 ---
 
+## Step 4: Structured output (required)
+
+After the recommendation and Clay POST, ALWAYS end the response with a fenced JSON block labeled `structured_output`. This block must contain every field, even if the Clay POST was skipped or failed.
+
+```json
+{
+  "first_name": "...",
+  "last_name": "...",
+  "company": "...",
+  "archetype": "...",
+  "agent_name": "...",
+  "one_liner": "...",
+  "recommendation_markdown": "...",
+  "first_event": "..."
+}
+```
+
+This block is non-negotiable -- every invocation must produce it so downstream consumers (Clay, scripts, other agents) can parse a consistent schema.
+
+---
+
 ## Notes
 
-- The recommendation output shown to the user is identical to /linkedin-agent-recommender — this skill only adds the Clay POST step.
+- The recommendation output shown to the user is identical to /linkedin-agent-recommender — this skill only adds the Clay POST step and the structured output block.
 - The `recommendation_markdown` field contains the full rendered output so Clay columns can reference it or an AI action can parse sections from it.
 - If the Clay webhook URL is missing, ask for it before proceeding. If the LinkedIn URL is missing, ask for it.
